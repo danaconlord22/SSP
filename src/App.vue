@@ -1,9 +1,37 @@
 <script setup>
 
-import { ref } from 'vue';
+import { ref } from 'vue'
 
-const score = ref({spelare: 0, dator: 0});
-const resultat = ref("Du vann!");
+// spelarens och datorns poäng
+const score = ref({spelare: 0, dator: 0})
+const resultat = ref("Du vann!")
+
+// spelarens val
+function spelarval(e) {
+    let buttons = document.getElementsByClassName('alternativ')
+    for (let b of buttons) {
+        b.classList.remove('spelarval')
+    }
+    e.target.classList.add('spelarval')
+    datorval()
+}
+
+// datorns val
+function datorval() {
+    let val = Math.floor(Math.random() * 3)
+    let alternativ = ['Sten', 'Sax', 'Påse']
+    let buttons = document.getElementsByClassName('alternativ')
+
+    for (let b of buttons) {
+        b.classList.remove('datorval')
+        b.title = ""
+        if (b.textContent == alternativ[val]) {
+            b.classList.add('datorval')
+            b.title = "Datorns val"
+        }
+    }
+}
+
 
 </script>
 
@@ -16,9 +44,9 @@ const resultat = ref("Du vann!");
   <!-- knapparna -->
   <main>
     <div class="knapprad">
-      <button>Sten</button>
-      <button>Sax</button>
-      <button>Påse</button>
+      <button class="alternativ" @click="spelarval">Sten</button>
+      <button class="alternativ" @click="spelarval">Sax</button>
+      <button class="alternativ" @click="spelarval">Påse</button>
     </div>
 
     <!-- resultat -->
@@ -69,5 +97,13 @@ button {
     font-size: 1.2em;
     text-align: center;
 }
+
+button.spelarval {
+    background-color: greenyellow;
+}
+
+button.datorval {
+    border: red solid 2px;
+} 
 
 </style>
