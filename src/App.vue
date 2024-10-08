@@ -32,6 +32,7 @@ function datorval() {
   }
 }
 
+// ge poäng och visa resultat
 function hittaVinnare() {
   let buttons = document.getElementsByClassName('alternativ')
   for (let b of buttons) {
@@ -58,6 +59,7 @@ function hittaVinnare() {
   }
 }
 
+// reset buttons function
 function reset() {
   score.value.spelare = 0
   score.value.dator = 0
@@ -97,6 +99,7 @@ function reset() {
       </p>
     </div>
 
+    <!-- nollställ knapp -->
     <div class="score">
       <button id="nolla" @click="reset">Nollställ poängen</button>
     </div>
