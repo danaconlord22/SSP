@@ -2,6 +2,8 @@
 import { ref } from 'vue'
 import KnappRad from './components/KnappRad.vue'
 
+const knappar = ref(['Sten', 'Sax', 'Påse'])
+
 // spelarens och datorns poäng
 const score = ref({ spelare: 0, dator: 0 })
 const resultat = ref('Spelet har börjat!') // rätt text vid start
@@ -53,7 +55,7 @@ function reset() {
   </header>
 
   <main>
-    <KnappRad />
+    <KnappRad :knappar="knappar" @valda-knappar="hittaVinnare" />
 
     <!-- resultat -->
     <div class="resultat">
