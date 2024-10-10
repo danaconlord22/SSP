@@ -30,6 +30,15 @@ watch(props, () => {
     }
   }
 })
+
+watch(
+  () => props.reset,
+  () => {
+    if (props.reset) {
+      resultat.value = 'Spelet har börjat'
+    }
+  }
+)
 </script>
 
 <template>

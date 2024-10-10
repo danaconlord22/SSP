@@ -11,6 +11,16 @@ watch(props, () => {
     score.value.dator++
   }
 })
+
+watch(
+  () => props.reset,
+  () => {
+    if (props.reset) {
+      score.value.spelare = 0
+      score.value.dator = 0
+    }
+  }
+)
 </script>
 
 <template>
