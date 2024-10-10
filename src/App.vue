@@ -9,29 +9,19 @@ import PoangRad from './components/PoangRad.vue'
 const knappar = ref(['Sten', 'Sax', 'Påse'])
 
 // const
-const score = ref({ spelare: 0, dator: 0 })
 const resultat = ref({})
 const vinnare = ref('')
 
+const reset = ref(true)
+
 // ge poäng och visa resultat
 function hittaVinnare(valdaKnappar) {
+  reset.value = false
   vinnare.value = ''
   console.log('Valda knappar:', valdaKnappar)
   let spelare = knappar.value.indexOf(valdaKnappar.spelare)
   let dator = knappar.value.indexOf(valdaKnappar.dator)
   resultat.value = { spelare: spelare, dator: dator }
-}
-
-// reset buttons function
-function reset() {
-  score.value.spelare = 0
-  score.value.dator = 0
-  resultat.value = 'Spelet har börjat!' // Reset result message to a default
-  let buttons = document.getElementsByClassName('alternativ')
-  for (let b of buttons) {
-    b.classList.remove('spelarval')
-    b.classList.remove('datorval')
-  }
 }
 
 function raknaPoang(v) {
@@ -46,13 +36,13 @@ function raknaPoang(v) {
   </header>
 
   <main>
-    <KnappRad :knappar="knappar" @valda-knappar="hittaVinnare" />
+    <KnappRad :knappar="knappar" @valda-knappar="hittaVinnare" :reset="reset" />
 
     <!-- resultat -->
-    <ResultatRad :valda-knappar="resultat" @vinnare="raknaPoang" />
+    <ResultatRad :valda-knappar="resultat" @vinnare="raknaPoang" :reset="reset" />
 
     <!-- poäng -->
-    <PoangRad :vinnare="vinnare" />
+    <PoangRad :vinnare="vinnare" :reset="reset" />
     <!--<div class="score">
       <p>
         <span id="spelare">{{ score.spelare }}</span> -
@@ -61,8 +51,9 @@ function raknaPoang(v) {
     </div> -->
 
     <!-- nollställ knapp -->
+
     <div class="score">
-      <button id="nolla" @click="reset">Nollställ poängen</button>
+      <button id="nolla" @click="reset = true">Nollställ poängen</button>
     </div>
   </main>
 </template>

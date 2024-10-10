@@ -1,7 +1,9 @@
 <script setup>
-const props = defineProps(['knappar'])
+const props = defineProps(['knappar', 'reset'])
 
 const emit = defineEmits(['valdaKnappar'])
+
+import { watch } from 'vue'
 
 // spelarens val
 function spelarval(e) {
@@ -28,6 +30,20 @@ function datorval() {
   }
   return props.knappar[val]
 }
+
+watch(
+  () => props.reset,
+  () => {
+    if (props.reset) {
+      let buttons = document.getElementsByClassName('alternativ')
+      for (let b of buttons) {
+        b.classList.remove('spelarval')
+        b.classList.remove('datorval')
+        b.title = ''
+      }
+    }
+  }
+)
 </script>
 
 <template>

@@ -1,7 +1,7 @@
 <script setup>
 import { ref, watch } from 'vue'
 
-const props = defineProps(['vinnare'])
+const props = defineProps(['vinnare', 'reset'])
 const score = ref({ spelare: 0, dator: 0 })
 
 watch(props, () => {
