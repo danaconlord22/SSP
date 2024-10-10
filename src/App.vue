@@ -7,9 +7,10 @@ import ResultatRad from './components/ResultatRad.vue'
 
 const knappar = ref(['Sten', 'Sax', 'Påse'])
 
-// spelarens och datorns poäng
+// const
 const score = ref({ spelare: 0, dator: 0 })
 const resultat = ref({})
+const vinnare = ref('')
 
 // ge poäng och visa resultat
 function hittaVinnare(valdaKnappar) {
@@ -30,6 +31,10 @@ function reset() {
     b.classList.remove('datorval')
   }
 }
+
+function raknaPoang(v) {
+  vinnare.value = v
+}
 </script>
 
 <template>
@@ -42,7 +47,7 @@ function reset() {
     <KnappRad :knappar="knappar" @valda-knappar="hittaVinnare" />
 
     <!-- resultat -->
-    <ResultatRad :valda-knappar="resultat" />
+    <ResultatRad :valda-knappar="resultat" @vinnare="raknaPoang" />
 
     <!-- poäng -->
     <div class="score">
