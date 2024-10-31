@@ -1,20 +1,25 @@
 <script setup>
+// Importera ref från Vue för reaktivt tillstånd
 import { ref } from 'vue'
 
+// Importera spelkomponenter
 import KnappRad from './components/KnappRad.vue'
-
 import ResultatRad from './components/ResultatRad.vue'
 import PoangRad from './components/PoangRad.vue'
 
-const knappar = ref(['Sten', 'Sax', 'Påse'])
+// Lista med alla spelalternativ
+const knappar = ref([
+  /* ... existing array ... */
+])
 
-// const
+// Hantera spelresultat och vinnare
 const resultat = ref({})
 const vinnare = ref('')
 
+// Kontrollvariabel för att återställa spelet
 const reset = ref(true)
 
-// ge poäng och visa resultat
+// Funktion för att hitta vinnaren baserat på valda knappar
 function hittaVinnare(valdaKnappar) {
   reset.value = false
   vinnare.value = ''
@@ -24,6 +29,7 @@ function hittaVinnare(valdaKnappar) {
   resultat.value = { spelare: spelare, dator: dator }
 }
 
+// Funktion för att räkna poäng
 function raknaPoang(v) {
   vinnare.value = v
 }
@@ -32,7 +38,7 @@ function raknaPoang(v) {
 <template>
   <!-- rubrik -->
   <header>
-    <h1>Sten, Sax, Påse!</h1>
+    <h1>Sten, Sax, Påse++</h1>
   </header>
 
   <main>

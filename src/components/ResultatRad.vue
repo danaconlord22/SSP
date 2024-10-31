@@ -1,11 +1,15 @@
 <script setup>
+// Importera nödvändiga Vue-funktioner
 import { ref, watch } from 'vue'
 
+// Ta emot props och skapa emit
 const props = defineProps(['valdaKnappar', 'reset'])
 const emit = defineEmits(['vinnare'])
 
+// Håll reda på spelresultatet
 const resultat = ref('Låt spelet börja!')
 
+// Övervaka props för att avgöra vinnare baserat på paritet
 watch(props, () => {
   console.log('Resultatet har ändrats till:', props.valdaKnappar)
   if (props.valdaKnappar.spelare == props.valdaKnappar.dator) {
@@ -20,7 +24,7 @@ watch(props, () => {
       emit('vinnare', 'dator')
     }
   } else {
-    // Olika paritet - Lägre talet vinner
+    // Olika paritet - Lägsta talet vinner
     if (props.valdaKnappar.spelare < props.valdaKnappar.dator) {
       resultat.value = 'Du vann!'
       emit('vinnare', 'spelare')
@@ -31,6 +35,7 @@ watch(props, () => {
   }
 })
 
+// Övervaka reset-prop för att återställa resultatmeddelandet
 watch(
   () => props.reset,
   () => {
