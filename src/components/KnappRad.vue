@@ -1,13 +1,11 @@
 <script setup>
-// Ta emot props från förälderkomponenten
 const props = defineProps(['knappar', 'reset'])
 
-// Skapa emit för att skicka data till föräldern
 const emit = defineEmits(['valdaKnappar'])
 
 import { watch } from 'vue'
 
-// Hantera spelarens val av knapp
+// spelarens val
 function spelarval(e) {
   let buttons = document.getElementsByClassName('alternativ')
   for (let b of buttons) {
@@ -17,7 +15,7 @@ function spelarval(e) {
   emit('valdaKnappar', { spelare: e.target.textContent, dator: datorval() })
 }
 
-// Slumpa fram datorns val
+// datorns val
 function datorval() {
   let val = Math.floor(Math.random() * props.knappar.length)
   let buttons = document.getElementsByClassName('alternativ')
@@ -33,7 +31,6 @@ function datorval() {
   return props.knappar[val]
 }
 
-// Övervaka reset-prop för att återställa knapparnas utseende
 watch(
   () => props.reset,
   () => {
@@ -70,14 +67,8 @@ button {
 
 .knapprad {
   display: flex;
-  flex-wrap: wrap;
   justify-content: center;
   gap: 0.6em;
-}
-
-.alternativ {
-  flex: 1 1 calc(11.11% - 0.6em); /* 11.11% width to fit 9 items per row */
-  box-sizing: border-box;
 }
 
 button.spelarval {

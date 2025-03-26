@@ -1,14 +1,9 @@
 <script setup>
-// Importera nödvändiga Vue-funktioner
 import { ref, watch } from 'vue'
 
-// Ta emot props från förälderkomponenten
 const props = defineProps(['vinnare', 'reset'])
-
-// Håll reda på poängställningen
 const score = ref({ spelare: 0, dator: 0 })
 
-// Övervaka ändringar i props för att uppdatera poängen
 watch(props, () => {
   if (props.vinnare === 'spelare') {
     score.value.spelare++
@@ -17,7 +12,6 @@ watch(props, () => {
   }
 })
 
-// Övervaka reset-prop för att nollställa poängen
 watch(
   () => props.reset,
   () => {
