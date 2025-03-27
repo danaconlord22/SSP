@@ -2,19 +2,24 @@
 import { ref } from 'vue'
 
 import KnappRad from './components/KnappRad.vue'
-
 import ResultatRad from './components/ResultatRad.vue'
 import PoangRad from './components/PoangRad.vue'
 
-const knappar = ref(['Sten', 'Sax', 'Påse'])
-
-// const
+const knappar = ref([
+  'Warrior',
+  'Mage',
+  'Rogue',
+  'Paladin',
+  'Warlock',
+  'Priest',
+  'Hunter',
+  'Druid',
+  'Shaman'
+])
 const resultat = ref({})
 const vinnare = ref('')
-
 const reset = ref(true)
 
-// ge poäng och visa resultat
 function hittaVinnare(valdaKnappar) {
   reset.value = false
   vinnare.value = ''
@@ -30,57 +35,56 @@ function raknaPoang(v) {
 </script>
 
 <template>
-  <!-- rubrik -->
-  <header>
-    <h1>Sten, Sax, Påse!</h1>
-  </header>
+  <div class="game-container">
+    <header>
+      <h1>Sten, Sax, Påse++</h1>
+    </header>
 
-  <main>
-    <KnappRad :knappar="knappar" @valda-knappar="hittaVinnare" :reset="reset" />
+    <main>
+      <KnappRad :knappar="knappar" @valda-knappar="hittaVinnare" :reset="reset" />
+      <ResultatRad :valda-knappar="resultat" @vinnare="raknaPoang" :reset="reset" />
+      <PoangRad :vinnare="vinnare" :reset="reset" />
 
-    <!-- resultat -->
-    <ResultatRad :valda-knappar="resultat" @vinnare="raknaPoang" :reset="reset" />
-
-    <!-- poäng -->
-    <PoangRad :vinnare="vinnare" :reset="reset" />
-    <!--<div class="score">
-      <p>
-        <span id="spelare">{{ score.spelare }}</span> -
-        <span id="dator">{{ score.dator }}</span>
-      </p>
-    </div> -->
-
-    <!-- nollställ knapp -->
-
-    <div class="score">
-      <button id="nolla" @click="reset = true">Nollställ poängen</button>
-    </div>
-  </main>
+      <div class="reset-container">
+        <button id="nolla" @click="reset = true">Nollställ poängen</button>
+      </div>
+    </main>
+  </div>
 </template>
 
 <style scoped>
+.game-container {
+  padding: 2em;
+}
+
 header {
-  text-align: center;
-  margin-bottom: 1.2em;
+  margin-bottom: 2em;
 }
 
-button {
-  padding: 0.6em 1.2em;
-  font-size: 1.2em;
-  background-color: #f0f0f0;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-.score {
-  font-size: 1.2em;
+.reset-container {
   text-align: center;
+  margin-top: 2em;
 }
 
 #nolla {
-  margin-top: 2em;
-  padding: 0.3em 0.6em;
+  padding: 0.5em 1em;
   font-size: 0.8em;
+  background-color: #0a0014;
+  border: 2px solid #8a2be2;
+  color: #8a2be2;
+  cursor: pointer;
+  font-family: 'Press Start 2P', cursive;
+  text-transform: uppercase;
+  transition: all 0.2s ease;
+  box-shadow: 0 0 10px #8a2be2;
+}
+
+#nolla:hover {
+  background-color: #8a2be2;
+  color: #0a0014;
+  transform: scale(1.05);
+  box-shadow:
+    0 0 15px #8a2be2,
+    0 0 30px #4d4dff;
 }
 </style>

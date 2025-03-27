@@ -26,15 +26,38 @@ watch(
 <template>
   <div class="score">
     <p>
-      <span id="spelare">
-        {{ score.spelare }}
-      </span>
-      -
-      <span id="dator">
-        {{ score.dator }}
-      </span>
+      <span id="spelare" class="player-score">{{ score.spelare }}</span>
+      <span class="separator">:</span>
+      <span id="dator" class="computer-score">{{ score.dator }}</span>
     </p>
   </div>
 </template>
 
-<style scoped></style>
+<style scoped>
+.score {
+  font-size: 2.5em;
+  text-align: center;
+  margin: 1em 0;
+  text-shadow: 0 0 10px #4d4dff;
+}
+
+.player-score,
+.computer-score {
+  display: inline-block;
+  min-width: 1.5em;
+  padding: 0.2em;
+  color: #4d4dff;
+}
+
+.separator {
+  color: #8a2be2;
+  margin: 0 0.5em;
+  animation: blink 1s infinite;
+}
+
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
+}
+</style>

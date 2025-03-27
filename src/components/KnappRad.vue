@@ -56,26 +56,64 @@ watch(
 </template>
 
 <style scoped>
-button {
-  padding: 0.6em 1.2em;
-  font-size: 1.2em;
-  background-color: #f0f0f0;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
 .knapprad {
   display: flex;
   justify-content: center;
-  gap: 0.6em;
+  flex-wrap: wrap;
+  gap: 1em;
+  margin: 2em 0;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+button {
+  padding: 0.8em 1.5em;
+  font-size: 0.8em;
+  background-color: #0a0014;
+  border: 3px solid #4d4dff;
+  border-radius: 0;
+  color: #4d4dff;
+  cursor: pointer;
+  font-family: 'Press Start 2P', cursive;
+  text-transform: uppercase;
+  transition: all 0.2s ease;
+  box-shadow: 0 0 10px #4d4dff;
+  min-width: 150px;
+}
+
+button:hover {
+  background-color: #4d4dff;
+  color: #0a0014;
+  transform: scale(1.05);
+  box-shadow:
+    0 0 15px #4d4dff,
+    0 0 30px #8a2be2;
 }
 
 button.spelarval {
-  background-color: greenyellow;
+  background-color: #4d4dff;
+  color: #0a0014;
+  animation: pulse 1s infinite;
+  box-shadow:
+    0 0 15px #4d4dff,
+    0 0 30px #8a2be2;
 }
 
 button.datorval {
-  border: red solid 2px;
+  border-color: #8a2be2;
+  box-shadow: 0 0 10px #8a2be2;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
 }
 </style>
